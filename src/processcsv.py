@@ -22,27 +22,34 @@ def unique_items(base_dir, in_pathfilename, out_folder, cols:List[str]):
 
         if not Path(base_dir/out_folder).exists():
             Path.mkdir(base_dir/out_folder)
-        columns = unique_dic.keys()
-        for k in columns:
-            if len(cols) == 0:
-                with open(Path.joinpath(base_dir, out_folder,f'{k}.csv'), 'w+', newline='') as write_obj:
-                    fieldnames = [f'{k}']
-                    writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
-                    writer.writeheader()
-                    for x in unique_dic[k]:
-                        writer.writerow({k:x})
-            else:
-                for col in cols:
-                    if col in columns:
-                        with open(Path.joinpath(base_dir, out_folder, f'{col}.csv'), 'w+', newline='') as write_obj:
-                            fieldnames = [f'{col}']
-                            writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
-                            writer.writeheader()
-                            for x in unique_dic[col]:
-                                writer.writerow({col:x})
-                    else:
-                        logger.warning(f'The provided column name does\'t exist, omitted')
-                        continue
+        original_columns_header = unique_dic.keys()
+        if len(cols) == 0:
+            original_columns_header = unique_items  
+            cols = original_columns_header
+        else:
+            for k in cols:
+                if k not in original_columns_header:
+                    logger.error(f'KeyError! The provided column name does\'t exist, omitted')
+                    break
+        for k in cols:
+            with open(Path.joinpath(base_dir, out_folder,f'{k}.csv'), 'w+', newline='') as write_obj:
+                fieldnames = [f'{k}']
+                writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
+                writer.writeheader()
+                for x in unique_dic[k]:
+                    writer.writerow({k:x})
+            # else:
+            #     for col in cols:
+            #         if col in columns:
+            #             with open(Path.joinpath(base_dir, out_folder, f'{col}.csv'), 'w+', newline='') as write_obj:
+            #                 fieldnames = [f'{col}']
+            #                 writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
+            #                 writer.writeheader()
+            #                 for x in unique_dic[col]:
+            #                     writer.writerow({col:x})
+            #         else:
+            #             logger.warning(f'The provided column name does\'t exist, omitted')
+            #             continue
                     
             
         # for k   in unique_dic.keys():
@@ -94,6 +101,7 @@ if __name__ == "__main__":
     base_dir = Path(__file__).resolve().parent.parent
     in_filename = 'data/rawdata/new_ROI.csv'
     out_folder = 'data/processedData'
+    cols = []
     cols = ['BATCH TYPE']
     unique_items(base_dir, in_filename, out_folder, cols=cols)
     group_by = ['BATCH TYPE','ORIGINATION VENDOR', 'PAY METHOD', 'CURRENCY TYPE']
