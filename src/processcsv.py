@@ -2,12 +2,15 @@ from typing import List
 import csv
 from os import path
 from pathlib import Path
+import logging
+
+logger = logging.getLogger(__name__)
 
 
-def unique_items(in_pathfilename, out_path, col=None):
+def unique_items(base_dir, in_pathfilename, out_folder, cols:List[str]):
     """Find unique items in a column in a csv file if the column name specified;
-      if no column specified, provide csv file with unique items for every column."""
-    with open (in_pathfilename, newline='') as read_object:
+      if no column(s) specified, provide csv file with unique items for every column."""
+    with open (base_dir/in_pathfilename, newline='') as read_object:
         rawdata_reader = csv.DictReader(read_object)
 
         unique_dic = {}
@@ -17,15 +20,19 @@ def unique_items(in_pathfilename, out_path, col=None):
                     unique_dic[k] = set()
                 unique_dic[k].add(v)
 
-        for k in unique_dic.keys():
-            if col is None:
-                with open (f'{out_path/k}.csv','w+', newline='') as write_obj:
-                    fieldnames = [f'{k}']
-                    writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
-                    writer.writeheader()
-                    for x in unique_dic[k]:
-                        writer.writerow({k:x})
-            with open (f'{out_path/k}.csv','w+', newline='') as write_obj:
+        if not Path(base_dir/out_folder).exists():
+            Path.mkdir(base_dir/out_folder)
+        original_columns_header = unique_dic.keys()
+        if len(cols) == 0:
+            original_columns_header = unique_items  
+            cols = original_columns_header
+        else:
+            for k in cols:
+                if k not in original_columns_header:
+                    logger.error(f'KeyError! The provided column name does\'t exist, omitted')
+                    break
+        for k in cols:
+            with open(Path.joinpath(base_dir, out_folder,f'{k}.csv'), 'w+', newline='') as write_obj:
                 fieldnames = [f'{k}']
                 writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
                 writer.writeheader()
@@ -33,8 +40,8 @@ def unique_items(in_pathfilename, out_path, col=None):
                     writer.writerow({k:x})
                 
 
-def sum_group_by_col(in_pathfilename, out_path,filename, group_by:List[str]):
-    """Sum a column normally is amount with predefined conditions, the conditions are normally 
+def sum_group_by_col(base_dir, in_pathfilename, out_folder, filename, group_by:List[str]):
+    """Sum a column which normally is 'amount' with predefined conditions, the conditions are normally 
     values in one or more columns."""
     with open (in_pathfilename, newline='') as read_object:
         rawdata_reader = csv.DictReader(read_object)
@@ -46,7 +53,9 @@ def sum_group_by_col(in_pathfilename, out_path,filename, group_by:List[str]):
                 res_dic[k] = 0
             res_dic[k] += float(row['NET AMOUNT'])
 
-    with open (f'{out_path}/{filename}','w+', newline='') as write_obj:
+    if not Path(base_dir/out_folder).exists():
+        Path.mkdir({base_dir}/{out_folder})
+    with open (base_dir/out_folder/filename,'w+', newline='') as write_obj:
         fieldnames = group_by.copy()
         fieldnames.append('TOTAL_AMOUNT')
         writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
@@ -61,11 +70,12 @@ def sum_group_by_col(in_pathfilename, out_path,filename, group_by:List[str]):
 
 
 if __name__ == "__main__":
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    in_filename = 'rawdata/new_ROI.csv'
-    out_path = 'processedData'
-    print(unique_items(BASE_DIR/in_filename, BASE_DIR/out_path), col='BATCH TYPE')
-    #print(unique_items(BASE_DIR/filename, BASE_DIR/out_path))
-    group_by = ['BATCH LOCK DATE','BATCH TYPE','ORIGINATION VENDOR', 'PAY METHOD', 'CURRENCY TYPE']
+    base_dir = Path(__file__).resolve().parent.parent
+    in_filename = 'data/rawdata/new_ROI.csv'
+    out_folder = 'data/processedData'
+    cols = []
+    # cols = ['BATCH TYPE']
+    unique_items(base_dir, in_filename, out_folder, cols=cols)
+    group_by = ['BATCH TYPE','ORIGINATION VENDOR', 'PAY METHOD', 'CURRENCY TYPE']
     out_filename = 'aa_groupsums.csv'
-    sum_group_by_col(BASE_DIR/in_filename,out_path, out_filename,group_by)
+    sum_group_by_col(base_dir, in_filename,out_folder, out_filename, group_by)
