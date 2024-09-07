@@ -7,37 +7,32 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def unique_items(base_dir, in_pathfilename, out_folder, cols:List[str]):
+def unique_items(base_dir, in_pathfilename, out_folder, cols=None):
     """Find unique items in a column in a csv file if the column name specified;
       if no column(s) specified, provide csv file with unique items for every column."""
+    if not Path(base_dir/out_folder).exists():
+        Path.mkdir(base_dir/out_folder)
     with open (base_dir/in_pathfilename, newline='') as read_object:
         rawdata_reader = csv.DictReader(read_object)
-
+        #print(rawdata_reader.fieldnames)
         unique_dic = {}
         for row in rawdata_reader:
             for k, v in row.items():
                 if k not in unique_dic:
                     unique_dic[k] = set()
                 unique_dic[k].add(v)
-
-        if not Path(base_dir/out_folder).exists():
-            Path.mkdir(base_dir/out_folder)
-        original_columns_header = unique_dic.keys()
-        if len(cols) == 0:
-            original_columns_header = unique_items  
-            cols = original_columns_header
-        else:
-            for k in cols:
-                if k not in original_columns_header:
-                    logger.error(f'KeyError! The provided column name does\'t exist, omitted')
-                    break
-        for k in cols:
-            with open(Path.joinpath(base_dir, out_folder,f'{k}.csv'), 'w+', newline='') as write_obj:
-                fieldnames = [f'{k}']
-                writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
-                writer.writeheader()
-                for x in unique_dic[k]:
-                    writer.writerow({k:x})
+    fieldnames = rawdata_reader.fieldnames
+    if not cols:
+        cols = fieldnames
+    for col in cols:
+        if col not in fieldnames:
+            logger.error
+        with open(Path.joinpath(base_dir, out_folder,f'{col}.csv'), 'w+', newline='') as write_obj:
+            fieldnames = [f'{col}']
+            writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
+            writer.writeheader()
+            for x in unique_dic[col]:
+                writer.writerow({col:x})
                 
 
 def sum_group_by_col(base_dir, in_pathfilename, out_folder, filename, group_by:List[str]):
@@ -73,9 +68,9 @@ if __name__ == "__main__":
     base_dir = Path(__file__).resolve().parent.parent
     in_filename = 'data/rawdata/new_ROI.csv'
     out_folder = 'data/processedData'
+    #cols = ['PAY METHOD','BATCH TYPE']
     cols = []
-    # cols = ['BATCH TYPE']
     unique_items(base_dir, in_filename, out_folder, cols=cols)
     group_by = ['BATCH TYPE','ORIGINATION VENDOR', 'PAY METHOD', 'CURRENCY TYPE']
     out_filename = 'aa_groupsums.csv'
-    sum_group_by_col(base_dir, in_filename,out_folder, out_filename, group_by)
+   # sum_group_by_col(base_dir, in_filename,out_folder, out_filename, group_by)
