@@ -37,7 +37,7 @@
         version='0.1.0',
         description='My first Python library',
         author='Lizzie Zhou',
-        license='recon team',
+        license='lizziedev team',
         install_requires=[],
         setup_requires=['pytest-runner'],
         tests_require=['pytest'],
@@ -51,7 +51,7 @@
 
     <h1>Rebuild<h1>
 
-    cd to/path/where/the/libary/is, my case: /Users/lizziez/projects/recon_utility
+    cd to/path/where/the/libary/is, my case: /Users/lizziez/projects/pythonUtility
     ls -la 
     source venv/bin/activate
     pip install wheel
@@ -59,7 +59,7 @@
     pip install twine
     python setup.py pytest
     python setup.py bdist_wheel
-    pip install /Users/lizziez/projects/recon_utility/dist/reconpythonlib-0.1.0-py3-none-any.whl 
+    pip install /Users/lizziez/projects/pythonUtility/dist/pythonUtilitylib-0.1.0-py3-none-any.whl 
 
     <h2> The functions in this lib including:
     redshift connection
