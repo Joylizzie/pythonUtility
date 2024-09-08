@@ -8,8 +8,8 @@ logger = logging.getLogger(__name__)
 
 
 def unique_items(base_dir, in_pathfilename, out_folder, cols=None):
-    """Find unique items in a column in a csv file if the column name specified;
-      if no column(s) specified, provide csv file with unique items for every column."""
+    """Find unique items in a column in a csv file if  column name(s) specified;
+    if no column(s) specified, provide csv file with unique items for every column."""
     if not Path(base_dir/out_folder).exists():
         Path.mkdir(base_dir/out_folder)
     with open (base_dir/in_pathfilename, newline='') as read_object:
@@ -41,12 +41,12 @@ def sum_group_by_col(base_dir, in_pathfilename, out_folder, filename, group_by:L
     with open (in_pathfilename, newline='') as read_object:
         rawdata_reader = csv.DictReader(read_object)
         # rows group by columns in tup defined
-        res_dic = {}
+        res_dict = {}
         for row in rawdata_reader:
             k = tuple([row[column] for column in group_by])
-            if k not in res_dic:
-                res_dic[k] = 0
-            res_dic[k] += float(row['NET AMOUNT'])
+            if k not in res_dict:
+                res_dict[k] = 0
+            res_dict[k] += float(row['NET AMOUNT'])
 
     if not Path(base_dir/out_folder).exists():
         Path.mkdir({base_dir}/{out_folder})
@@ -73,4 +73,4 @@ if __name__ == "__main__":
     unique_items(base_dir, in_filename, out_folder, cols=cols)
     group_by = ['BATCH TYPE','ORIGINATION VENDOR', 'PAY METHOD', 'CURRENCY TYPE']
     out_filename = 'aa_groupsums.csv'
-   # sum_group_by_col(base_dir, in_filename,out_folder, out_filename, group_by)
+    sum_group_by_col(base_dir, in_filename,out_folder, out_filename, group_by
