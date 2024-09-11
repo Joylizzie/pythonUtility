@@ -1,8 +1,10 @@
 from typing import List
 import csv
-from os import path
+import sys
+print(f'sys path is {sys.path}')
 from pathlib import Path
 import logging
+from pathoperation.create_folder import create_folder_if_needed
 
 logger = logging.getLogger(__name__)
 
@@ -10,8 +12,9 @@ logger = logging.getLogger(__name__)
 def unique_items(base_dir, in_pathfilename, out_folder, cols=None):
     """Find unique items in a column in a csv file if  column name(s) specified;
     if no column(s) specified, provide csv file with unique items for every column."""
-    if not Path(base_dir/out_folder).exists():
-        Path.mkdir(base_dir/out_folder)
+    # if not Path(base_dir/out_folder).exists():
+    #     Path.mkdir(base_dir/out_folder)
+    create_folder_if_needed(base_dir,out_folder)
     with open (base_dir/in_pathfilename, newline='') as read_object:
         rawdata_reader = csv.DictReader(read_object)
         #print(rawdata_reader.fieldnames)
@@ -56,7 +59,7 @@ def sum_group_by_col(base_dir, in_pathfilename, out_folder, filename, group_by:L
         writer = csv.DictWriter(write_obj, fieldnames=fieldnames)
         writer.writeheader()
 
-        for k, v in res_dic.items():
+        for k, v in res_dict.items():
             line_dict = {}
             for idx, column in enumerate(group_by):
                 line_dict[column] = k[idx]
@@ -73,4 +76,4 @@ if __name__ == "__main__":
     unique_items(base_dir, in_filename, out_folder, cols=cols)
     group_by = ['BATCH TYPE','ORIGINATION VENDOR', 'PAY METHOD', 'CURRENCY TYPE']
     out_filename = 'aa_groupsums.csv'
-    sum_group_by_col(base_dir, in_filename,out_folder, out_filename, group_by
+    sum_group_by_col(base_dir, in_filename,out_folder, out_filename, group_by)

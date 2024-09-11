@@ -1,4 +1,6 @@
 *_pycache__/*
+src/_pycache__/*
 rawdata/
 processedData/
 venv/
+.vscode/
