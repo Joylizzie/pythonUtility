@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pythonutilities's documentation!
+Welcome to pythonUtilty's documentation!
 
 .. note::
       More utility modules will be added

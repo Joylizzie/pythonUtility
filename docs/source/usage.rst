@@ -14,7 +14,7 @@ To use PythonUtilities, first install is using pip:
 
 Modules
 -------
-``processcsv.unique_items()`` function: 
+``unique_items()`` function: 
 .. autofunction:: io.open 
   
 
