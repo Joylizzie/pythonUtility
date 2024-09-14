@@ -1,12 +1,11 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# -*- coding: utf-8 -*-
+
+# pythonUtility build configuration file
 
 # -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+# 
 
-project = 'pythonUtilities'
+project = 'pythonUtility'
 copyright = '2024, Lizzie'
 author = 'Lizzie'
 release = '0.0.1'
@@ -14,10 +13,14 @@ release = '0.0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-# -- Path configuration-------------------------------------------------------------
+# -- pythonUtility Path configuration-------------------------------------------------------------
 import sys
-import os
-sys.path.insert(0, os.path.abspath('extensions'))
+from pathlib import Path
+
+def _fix_path():
+    """Find the root of pythonUtility. """
+    p = Path(__file__).resolve().parents[2]
+    sys.path.insert(0, p.abspath('extensions'))
 
 extensions = [
     'sphinx.ext.duration',
@@ -39,5 +42,5 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'classic'
 html_static_path = ['_static']
