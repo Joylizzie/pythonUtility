@@ -29,6 +29,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',    
+    'sphinx_rtd_theme',
 ]
 
 source_suffix = '.rst'
