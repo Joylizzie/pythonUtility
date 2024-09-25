@@ -1,9 +1,11 @@
 print(__package__)
 from pathlib import Path
+
+from pythonutility.processcsv import unique_items
 print(f'cwd = {Path.cwd()}')
 import unittest
-from src.pathoperation import create_folder as pro
-from src.processcsv import processcsv, lookupcsv, sanitize
+from pythonutility.pathoperation import create_folder as pro
+from pythonutility.processcsv import lookupcsv, sanitize
 
 class TestCreatefolder(unittest.TestCase):
     def test_folder_creation(self):
@@ -25,7 +27,7 @@ class TestCreatefolder(unittest.TestCase):
         in_filename = 'data/rawdata/new_ROI.csv'
         out_folder = 'test_data/processedData'
         cols=['BATCH TYPE']
-        processcsv.unique_items(base_dir=base_dir, in_filename=in_filename, out_folder=out_folder, cols=cols)
+        unique_items.unique_items(base_dir=base_dir, in_filename=in_filename, out_folder=out_folder, cols=cols)
         
     def test_lookupcsv(self):
         f = "/home/lizzie/project/pythonUtility/data/rawdata/sep_1.csv"
