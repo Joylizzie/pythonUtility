@@ -1,0 +1,6 @@
+README.rst
+setup.py
+pythonutility.egg-info/PKG-INFO
+pythonutility.egg-info/SOURCES.txt
+pythonutility.egg-info/dependency_links.txt
+pythonutility.egg-info/top_level.txt
