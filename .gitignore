@@ -1,10 +1,6 @@
-*_pycache__/*
-src/_pycache__/*
-src/_pycache__/
-src/*/_pycache__/*
+__pycache__/.
 rawdata/
 processedData/
 venv/
 .vscode/
-tests/__pycache__/
 .pytest_cache
