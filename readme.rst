@@ -23,28 +23,26 @@
         pip install wheel
         pip install setuptools
         pip install twine
-        touch setup.py
-        mkdir pythonUtility
-        cd pythonUtility
+        mkdir pythonutility
+        cd pythonutility
         touch __init__.py
         touch myfunction.py # copy some valid function you want to be included in the library
         cd ..
+        mkdir tests
         touch __init__.py
-        mkdir test_myfunctions.py
         pip install pytest
         pip install pytest-runner
         touch test_myfunctions.py
-        touch setup.py<p>
 
     In setup.py, input(quotation marks not included)::
 
         from setuptools import find_packages, setup
         setup(
-            name='mypythonlib',
+            name='pythonutilitylib',
             packages=find_packages(include=['pythonUtility']),
             version='0.1.0',
             description='Python utility library',
-            author='Lizzie Zhou',
+            author='Lizzie',
             license='lizziedev team',
             install_requires=[],
             setup_requires=['pytest-runner'],

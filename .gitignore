@@ -6,3 +6,5 @@ rawdata/
 processedData/
 venv/
 .vscode/
+tests/__pycache__/
+.pytest_cache

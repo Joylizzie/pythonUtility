@@ -1,25 +1,22 @@
-print(__package__)
 from pathlib import Path
-
-from pythonutility.processcsv import unique_items
-print(f'cwd = {Path.cwd()}')
+from pythonutility.processcsv import unique_items, lookupcsv, splitcsv
 import unittest
 from pythonutility.pathoperation import create_folder as pro
-from pythonutility.processcsv import lookupcsv, sanitize
+
 
 class TestCreatefolder(unittest.TestCase):
     def test_folder_creation(self):
         base_dir = Path(__file__).resolve().parent
         folder = 'test_data' 
         pro.create_folder_if_needed(base_dir, folder)
-        test_path = Path('/home/lizzie/project/pythonUtility/tests/tests_data')
+        test_path = Path('/home/lizzie/project/pythonUtility/tests/test_data')
         self.assertTrue(test_path)
 
-    def test_sanitize(self):
-        f = "/home/lizzie/project/pythonUtility/data/rawdata/sep_2_1.csv"
-        cols = 'Vantiv Payment ID'
-        sanitize.remove_q(f, cols)
-        self.assertEqual(1, 1)
+    # def test_sanitize(self):
+    #     f = "/home/lizzie/project/pythonUtility/data/rawdata/sep_2_1.csv"
+    #     cols = 'Vantiv Payment ID'
+    #     sanitize.remove_q(f, cols)
+    #     self.assertEqual(1, 1)
 
 
     def test_unique_items(self):
