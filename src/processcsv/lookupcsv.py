@@ -4,30 +4,31 @@ from collections import defaultdict
 from pathlib import Path
 
 
-def differs(f1:str,key_cols_1:List[str],val_col_1, f2, key_cols_2, val_col_2, f3, f4, f5):
-
-    """compare two csv files - file1 and file2, with selected columns. 
-        write the items exist in both files to a csv file - f2,
+def differs(f1:str,key_cols_1:List[str],val_col_1: any, \
+            f2:str, key_cols_2:List[str], val_col_2:any, \
+                f3:str, f4:str, f5:str):
+    """Compare two csv files - file1 and file2, with selected columns. 
+        write the items exist in both files to a csv file f3
         write the items exist in f1 not in f2 to f4,
         write the items exist in f2 not in f1 to f5
 
-    :param f1: a file - f1 to be compared
+    :param f1: source csv file 
     :type f1: str
     :param key_cols_1: the column's names which are selected to be compared
-    :type key_cols_1: a list of string
+    :type key_cols_1: List[str]
     :param val_col_1: the value to be compared, mostly 'amount'
-    :type val_col_1: could be numeric or any
-    :param f2:The file -f2 to compare to the above file - f1
+    :type val_col_1: float or any
+    :param f2: target csv file to be compared with f1
     :type f2: str
-    :param key_cols_2:  the column's names which are selected to be compared
-    :type key_cols_2: a list of string
-    :param val_col_2: could be numeric or anythe value to be compared, mostly 'amount'
-    :type val_col_2: could be numeric or any
-    :param f3: the items exist in both files
+    :param key_cols_2: the column's names which are selected to be compared
+    :type key_cols_2: List[str]
+    :param val_col_2: the value to be compared, mostly 'amount'
+    :type val_col_2: float or any
+    :param f3: csv file to hold items both in f1 and f2
     :type f3: str
-    :param f4: the items in f1 not in f2
+    :param f4: items in f1 not in f2
     :type f4: str
-    :param f5: the items in f2 not in f1
+    :param f5: items in f2 not in f1
     :type f5: str
     """
     
@@ -51,18 +52,17 @@ def differs(f1:str,key_cols_1:List[str],val_col_1, f2, key_cols_2, val_col_2, f3
             f_5.write(str(k_2) + ',' + str(v_2) + '\n')
     f_5.close()
 
-
-def dict_val(f, key_cols:(str), val_col:str):
+def dict_val(f:str, key_cols:(str), val_col:any):
     """Populate a new dictionary from a csv file with predefined columns 
 
-    :param f: source csv file 
-    :type f: csv
-    :param key_cols:The columns selected for the new dictionary's key
+    :param f: the source csv file
+    :type f: str
+    :param key_cols: the columns selected to form the dictionary's key
     :type key_cols: a tuple of str
-    :param val_col: the column selected foe the new dictioary's value
-    :type val_col: could be anyt, mostly will be float
-    :return: a dictionary with selected columns of key and value
-    :rtype: dict
+    :param val_col: the value to be compared, mostly 'amount'
+    :type val_col: float or any
+    :return: a dictionary with a tuple of columns as key and value as the val_col
+    :rtype: dictionary
     """
 
     dict_ = defaultdict(list)
@@ -78,3 +78,15 @@ def dict_val(f, key_cols:(str), val_col:str):
             val = row_dict[val_col]
             dict_[key].append(val)
     return dict_
+
+    """Populate a new dictionary from a csv file with predefined columns 
+
+    :param f: 
+    :type f: str
+    :param key_cols:The columns selected for the new dictionary's key
+    :type key_cols: a tuple of str
+    :param val_col: the column selected foe the new dictioary's value
+    :type val_col: could be anyt, mostly will be float
+    :return: a dictionary with selected columns of key and value
+    :rtype: dict
+    """

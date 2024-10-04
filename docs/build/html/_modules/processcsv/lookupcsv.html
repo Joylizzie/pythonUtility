@@ -44,8 +44,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../cl_config.html">cl_config module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../processcsv.html">processcsv package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../pathoperation.html">pathoperation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../processcsv.html">processcsv package</a></li>
 </ul>
 
         </div>
@@ -79,30 +79,31 @@
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 
-<div class="viewcode-block" id="differs"><a class="viewcode-back" href="../../processcsv.html#processcsv.lookupcsv.differs">[docs]</a><span class="k">def</span> <span class="nf">differs</span><span class="p">(</span><span class="n">f1</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span><span class="n">key_cols_1</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span><span class="n">val_col_1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">key_cols_2</span><span class="p">,</span> <span class="n">val_col_2</span><span class="p">,</span> <span class="n">f3</span><span class="p">,</span> <span class="n">f4</span><span class="p">,</span> <span class="n">f5</span><span class="p">):</span>
-
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;compare two csv files - file1 and file2, with selected columns. </span>
-<span class="sd">        write the items exist in both files to a csv file - f2,</span>
+<div class="viewcode-block" id="differs"><a class="viewcode-back" href="../../processcsv.html#processcsv.lookupcsv.differs">[docs]</a><span class="k">def</span> <span class="nf">differs</span><span class="p">(</span><span class="n">f1</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span><span class="n">key_cols_1</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span><span class="n">val_col_1</span><span class="p">:</span> <span class="nb">any</span><span class="p">,</span> \
+            <span class="n">f2</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">key_cols_2</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">val_col_2</span><span class="p">:</span><span class="nb">any</span><span class="p">,</span> \
+                <span class="n">f3</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">f4</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">f5</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare two csv files - file1 and file2, with selected columns. </span>
+<span class="sd">        write the items exist in both files to a csv file f3</span>
 <span class="sd">        write the items exist in f1 not in f2 to f4,</span>
 <span class="sd">        write the items exist in f2 not in f1 to f5</span>
 
-<span class="sd">    :param f1: a file - f1 to be compared</span>
+<span class="sd">    :param f1: source csv file </span>
 <span class="sd">    :type f1: str</span>
 <span class="sd">    :param key_cols_1: the column&#39;s names which are selected to be compared</span>
-<span class="sd">    :type key_cols_1: a list of string</span>
+<span class="sd">    :type key_cols_1: List[str]</span>
 <span class="sd">    :param val_col_1: the value to be compared, mostly &#39;amount&#39;</span>
-<span class="sd">    :type val_col_1: could be numeric or any</span>
-<span class="sd">    :param f2:The file -f2 to compare to the above file - f1</span>
+<span class="sd">    :type val_col_1: float or any</span>
+<span class="sd">    :param f2: target csv file to be compared with f1</span>
 <span class="sd">    :type f2: str</span>
-<span class="sd">    :param key_cols_2:  the column&#39;s names which are selected to be compared</span>
-<span class="sd">    :type key_cols_2: a list of string</span>
-<span class="sd">    :param val_col_2: could be numeric or anythe value to be compared, mostly &#39;amount&#39;</span>
-<span class="sd">    :type val_col_2: could be numeric or any</span>
-<span class="sd">    :param f3: the items exist in both files</span>
+<span class="sd">    :param key_cols_2: the column&#39;s names which are selected to be compared</span>
+<span class="sd">    :type key_cols_2: List[str]</span>
+<span class="sd">    :param val_col_2: the value to be compared, mostly &#39;amount&#39;</span>
+<span class="sd">    :type val_col_2: float or any</span>
+<span class="sd">    :param f3: csv file to hold items both in f1 and f2</span>
 <span class="sd">    :type f3: str</span>
-<span class="sd">    :param f4: the items in f1 not in f2</span>
+<span class="sd">    :param f4: items in f1 not in f2</span>
 <span class="sd">    :type f4: str</span>
-<span class="sd">    :param f5: the items in f2 not in f1</span>
+<span class="sd">    :param f5: items in f2 not in f1</span>
 <span class="sd">    :type f5: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
@@ -126,18 +127,17 @@
             <span class="n">f_5</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">k_2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v_2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">f_5</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="dict_val"><a class="viewcode-back" href="../../processcsv.html#processcsv.lookupcsv.dict_val">[docs]</a><span class="k">def</span> <span class="nf">dict_val</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">key_cols</span><span class="p">:(</span><span class="nb">str</span><span class="p">),</span> <span class="n">val_col</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="dict_val"><a class="viewcode-back" href="../../processcsv.html#processcsv.lookupcsv.dict_val">[docs]</a><span class="k">def</span> <span class="nf">dict_val</span><span class="p">(</span><span class="n">f</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">key_cols</span><span class="p">:(</span><span class="nb">str</span><span class="p">),</span> <span class="n">val_col</span><span class="p">:</span><span class="nb">any</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Populate a new dictionary from a csv file with predefined columns </span>
 
-<span class="sd">    :param f: source csv file </span>
-<span class="sd">    :type f: csv</span>
-<span class="sd">    :param key_cols:The columns selected for the new dictionary&#39;s key</span>
+<span class="sd">    :param f: the source csv file</span>
+<span class="sd">    :type f: str</span>
+<span class="sd">    :param key_cols: the columns selected to form the dictionary&#39;s key</span>
 <span class="sd">    :type key_cols: a tuple of str</span>
-<span class="sd">    :param val_col: the column selected foe the new dictioary&#39;s value</span>
-<span class="sd">    :type val_col: could be anyt, mostly will be float</span>
-<span class="sd">    :return: a dictionary with selected columns of key and value</span>
-<span class="sd">    :rtype: dict</span>
+<span class="sd">    :param val_col: the value to be compared, mostly &#39;amount&#39;</span>
+<span class="sd">    :type val_col: float or any</span>
+<span class="sd">    :return: a dictionary with a tuple of columns as key and value as the val_col</span>
+<span class="sd">    :rtype: dictionary</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dict_</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
@@ -152,7 +152,19 @@
             <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">row_dict</span><span class="p">[</span><span class="n">key_col</span><span class="p">]</span> <span class="k">for</span> <span class="n">key_col</span> <span class="ow">in</span> <span class="n">key_cols</span><span class="p">)</span>
             <span class="n">val</span> <span class="o">=</span> <span class="n">row_dict</span><span class="p">[</span><span class="n">val_col</span><span class="p">]</span>
             <span class="n">dict_</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dict_</span></div>
+    <span class="k">return</span> <span class="n">dict_</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Populate a new dictionary from a csv file with predefined columns </span>
+
+<span class="sd">    :param f: </span>
+<span class="sd">    :type f: str</span>
+<span class="sd">    :param key_cols:The columns selected for the new dictionary&#39;s key</span>
+<span class="sd">    :type key_cols: a tuple of str</span>
+<span class="sd">    :param val_col: the column selected foe the new dictioary&#39;s value</span>
+<span class="sd">    :type val_col: could be anyt, mostly will be float</span>
+<span class="sd">    :return: a dictionary with selected columns of key and value</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
 </pre></div>
 
            </div>

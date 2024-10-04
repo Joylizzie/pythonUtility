@@ -73,9 +73,13 @@
     How to install
     ##############
 
-        Importing in your new project
-        import pythonUtility
-        from pythonUtilitylib import [desired functions]
+        If the libary is in local computer::
+            pip install /path/to/wheelfile.whl
+        
+        If published in Pypy repository::
+            Importing in your new project
+            import pythonUtility
+            from pythonUtilitylib import [desired functions]
 
 
     The functions in this lib including:

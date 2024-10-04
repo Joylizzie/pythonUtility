@@ -2,21 +2,23 @@ from typing import List
 import csv
 from pathlib import Path
 
-def group_by_col_sum(base_dir:str, in_pathfilename:str, out_folder:str, filename:str, group_by:List[str]):
-    """Sum a column which normally is 'amount' with predefined conditions, the conditions are normally 
-    values in one or more columns.
+def group_by_col_sum(base_dir:str, in_pathfilename:str, out_folder:str, \
+                     filename:str, group_by:List[str]):
+    """Sum a column which normally is 'amount' with predefined conditions, the\
+        conditions are normally values in one or more columns.
+
     :param base_dir: parent directory of the file
     :type base_dir: str
-    :param in_pathfilename: the csv file to be group by, directory plus file name
+    :param in_pathfilename: the csv file to be grouped by, directory under basedir\
+          plus file name
     :type in_pathfilename: str
-    :param out_folder: the processed csv file to be saved
+    :param out_folder: the dirto hold the processed csv file
     :type out_folder: str
-    :param filename: the processed csv file name
+    :param filename: a name for the processed csv file to be saved 
     :type filename: str
     :param group_by: a list of columns as grouped by conditions
     :type group_by: List[str]
     """
-
     with open (in_pathfilename, newline='') as read_object:
         rawdata_reader = csv.DictReader(read_object)
         # rows group by columns in tup defined

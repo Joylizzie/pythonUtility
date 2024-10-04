@@ -2,7 +2,7 @@ import csv
 from collections import defaultdict
 from pathlib import Path
 #from pythonutility.pathoperation.createfolder import create_folder_if_needed
-from ..pathoperation.createfolder import create_folder_if_needed
+from pathoperation.createfolder import create_folder_if_needed
 
 
 def split_csv(in_file:str, split_folder, out_file_name, delete_infile=True):
@@ -17,6 +17,7 @@ def split_csv(in_file:str, split_folder, out_file_name, delete_infile=True):
             same values in first column
     :type out_file_name: str
     """
+
     result = defaultdict(list)
     with open(in_file, "r", encoding="utf-8", newline="") as csv_r:
         # unpack the header and data from csv read object

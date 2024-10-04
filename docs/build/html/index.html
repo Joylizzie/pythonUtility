@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to pythonUtility’s documentation! &mdash; pythonUtility 0.0.1 documentation</title>
@@ -79,10 +79,7 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cl_config.html">cl_config module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cl_config.html#cl_config.get_args"><code class="docutils literal notranslate"><span class="pre">get_args()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="cl_config.html">cl_config module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pathoperation.html">pathoperation package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pathoperation.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pathoperation.html#module-pathoperation.createfolder">pathoperation.createfolder module</a></li>
@@ -109,28 +106,26 @@
 <span class="n">pip</span> <span class="n">install</span> <span class="n">wheel</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">setuptools</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">twine</span>
-<span class="n">touch</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span>
-<span class="n">mkdir</span> <span class="n">pythonUtility</span>
-<span class="n">cd</span> <span class="n">pythonUtility</span>
+<span class="n">mkdir</span> <span class="n">pythonutility</span>
+<span class="n">cd</span> <span class="n">pythonutility</span>
 <span class="n">touch</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
 <span class="n">touch</span> <span class="n">myfunction</span><span class="o">.</span><span class="n">py</span> <span class="c1"># copy some valid function you want to be included in the library</span>
 <span class="n">cd</span> <span class="o">..</span>
+<span class="n">mkdir</span> <span class="n">tests</span>
 <span class="n">touch</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-<span class="n">mkdir</span> <span class="n">test_myfunctions</span><span class="o">.</span><span class="n">py</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span><span class="o">-</span><span class="n">runner</span>
 <span class="n">touch</span> <span class="n">test_myfunctions</span><span class="o">.</span><span class="n">py</span>
-<span class="n">touch</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>In setup.py, input(quotation marks not included):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">find_packages</span><span class="p">,</span> <span class="n">setup</span>
 <span class="n">setup</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;mypythonlib&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pythonutilitylib&#39;</span><span class="p">,</span>
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pythonUtility&#39;</span><span class="p">]),</span>
     <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1.0&#39;</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Python utility library&#39;</span><span class="p">,</span>
-    <span class="n">author</span><span class="o">=</span><span class="s1">&#39;Lizzie Zhou&#39;</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s1">&#39;Lizzie&#39;</span><span class="p">,</span>
     <span class="n">license</span><span class="o">=</span><span class="s1">&#39;lizziedev team&#39;</span><span class="p">,</span>
     <span class="n">install_requires</span><span class="o">=</span><span class="p">[],</span>
     <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pytest-runner&#39;</span><span class="p">],</span>
@@ -158,9 +153,14 @@ pip install /Users/lizziez/projects/pythonUtility/dist/pythonUtilitylib-0.1.0-py
 </dd>
 </dl>
 <blockquote>
-<div><p>Importing in your new project
+<div><dl class="simple">
+<dt>If the libary is in local computer::</dt><dd><p>pip install /path/to/wheelfile.whl</p>
+</dd>
+<dt>If published in Pypy repository::</dt><dd><p>Importing in your new project
 import pythonUtility
 from pythonUtilitylib import [desired functions]</p>
+</dd>
+</dl>
 </div></blockquote>
 <blockquote>
 <div><p>#.redshift connection

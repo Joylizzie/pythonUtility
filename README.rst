@@ -51,9 +51,6 @@
     cd to/path/where/the/libary/is, my case: /Users/lizziez/projects/pythonUtility
     ls -la 
     source venv/bin/activate
-    pip install wheel
-    pip install setuptools
-    pip install twine
     python setup.py pytest
     python setup.py bdist_wheel
     pip install /Users/lizziez/projects/pythonUtility/dist/pythonUtilitylib-0.1.0-py3-none-any.whl 
@@ -68,5 +65,5 @@
     datetime
 
     <h2> Importing in your new project<h2>
-    import mypythonlib
-    from mypythonlib import myfunctions
+    import pythonutilityliblz
+    from pythonutilityliblz import [functions in the lib]
