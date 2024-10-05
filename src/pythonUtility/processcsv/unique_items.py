@@ -1,8 +1,7 @@
 import csv
 from pathlib import Path
 import logging
-#from pythonutility.pathoperation.createfolder import create_folder_if_needed
-from pathoperation.createfolder import create_folder_if_needed
+from pythonUtility.pathoperation.createfolder import create_folder_if_needed
 
 logger = logging.getLogger(__name__)
 
@@ -46,3 +45,6 @@ def unique_items(base_dir, in_pathfilename, out_folder, cols=None):
             for x in unique_dic[col]:
                 writer.writerow({col:x})
                 
+# divide by 100. By dividing 100, convert the processed numbers to original numbers
+def divid_100(number):
+    return round(number / 100, 2)

@@ -13,6 +13,8 @@ import sphinx_rtd_theme
 from os.path import abspath
 import sys
 sys.path.insert(0, abspath('../../src/'))
+print(sys.path)
+print(sys.path.insert(0, abspath('../../src/pythonUtility/')))
 
 
 # -- Project information -----------------------------------------------------
