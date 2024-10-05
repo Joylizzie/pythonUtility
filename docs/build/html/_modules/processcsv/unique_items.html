@@ -44,8 +44,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../cl_config.html">cl_config module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../processcsv.html">processcsv package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../pathoperation.html">pathoperation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../processcsv.html">processcsv package</a></li>
 </ul>
 
         </div>
@@ -76,13 +76,25 @@
 <span></span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">pathoperation.createfolder</span> <span class="kn">import</span> <span class="n">create_folder_if_needed</span>
+<span class="kn">from</span> <span class="nn">pythonUtility.pathoperation.createfolder</span> <span class="kn">import</span> <span class="n">create_folder_if_needed</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <div class="viewcode-block" id="unique_items"><a class="viewcode-back" href="../../processcsv.html#processcsv.unique_items.unique_items">[docs]</a><span class="k">def</span> <span class="nf">unique_items</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">in_pathfilename</span><span class="p">,</span> <span class="n">out_folder</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find unique items in a column in a csv file if  column name(s) specified;</span>
-<span class="sd">    if no column(s) specified, provide csv file with unique items for every column.&quot;&quot;&quot;</span>
+<span class="sd">    if no column(s) specified, provide csv file with unique items for every column.</span>
+<span class="sd">    </span>
+<span class="sd">    </span>
+<span class="sd">    :param base_dir: parent directory of the csv file</span>
+<span class="sd">    :type base_dir: str</span>
+<span class="sd">    :param in_pathfilename: the path within the basedir and the csv file name</span>
+<span class="sd">    :type in_pathfilename: str</span>
+<span class="sd">    :param out_folder: dir for output files</span>
+<span class="sd">    :type out_folder: str</span>
+<span class="sd">    :param cols: the columns which need to find their unique items</span>
+<span class="sd">    :type cols: List, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+ 
     <span class="c1"># if not Path(base_dir/out_folder).exists():</span>
     <span class="c1">#     Path.mkdir(base_dir/out_folder)</span>
     <span class="n">create_folder_if_needed</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span><span class="n">out_folder</span><span class="p">)</span>
@@ -108,6 +120,9 @@
             <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">unique_dic</span><span class="p">[</span><span class="n">col</span><span class="p">]:</span>
                 <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">({</span><span class="n">col</span><span class="p">:</span><span class="n">x</span><span class="p">})</span></div>
                 
+<span class="c1"># divide by 100. By dividing 100, convert the processed numbers to original numbers</span>
+<div class="viewcode-block" id="divid_100"><a class="viewcode-back" href="../../processcsv.html#processcsv.unique_items.divid_100">[docs]</a><span class="k">def</span> <span class="nf">divid_100</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">number</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

@@ -44,8 +44,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../cl_config.html">cl_config module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../processcsv.html">processcsv package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../pathoperation.html">pathoperation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../processcsv.html">processcsv package</a></li>
 </ul>
 
         </div>
@@ -77,21 +77,23 @@
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<div class="viewcode-block" id="group_by_col_sum"><a class="viewcode-back" href="../../processcsv.html#processcsv.groupby_col.group_by_col_sum">[docs]</a><span class="k">def</span> <span class="nf">group_by_col_sum</span><span class="p">(</span><span class="n">base_dir</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">in_pathfilename</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">out_folder</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">group_by</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sum a column which normally is &#39;amount&#39; with predefined conditions, the conditions are normally </span>
-<span class="sd">    values in one or more columns.</span>
+<div class="viewcode-block" id="group_by_col_sum"><a class="viewcode-back" href="../../processcsv.html#processcsv.groupby_col.group_by_col_sum">[docs]</a><span class="k">def</span> <span class="nf">group_by_col_sum</span><span class="p">(</span><span class="n">base_dir</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">in_pathfilename</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">out_folder</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> \
+                     <span class="n">filename</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">group_by</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sum a column which normally is &#39;amount&#39; with predefined conditions, the\</span>
+<span class="sd">        conditions are normally values in one or more columns.</span>
+
 <span class="sd">    :param base_dir: parent directory of the file</span>
 <span class="sd">    :type base_dir: str</span>
-<span class="sd">    :param in_pathfilename: the csv file to be group by, directory plus file name</span>
+<span class="sd">    :param in_pathfilename: the csv file to be grouped by, directory under basedir\</span>
+<span class="sd">          plus file name</span>
 <span class="sd">    :type in_pathfilename: str</span>
-<span class="sd">    :param out_folder: the processed csv file to be saved</span>
+<span class="sd">    :param out_folder: the dirto hold the processed csv file</span>
 <span class="sd">    :type out_folder: str</span>
-<span class="sd">    :param filename: the processed csv file name</span>
+<span class="sd">    :param filename: a name for the processed csv file to be saved </span>
 <span class="sd">    :type filename: str</span>
 <span class="sd">    :param group_by: a list of columns as grouped by conditions</span>
 <span class="sd">    :type group_by: List[str]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="n">in_pathfilename</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">read_object</span><span class="p">:</span>
         <span class="n">rawdata_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">read_object</span><span class="p">)</span>
         <span class="c1"># rows group by columns in tup defined</span>

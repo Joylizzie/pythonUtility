@@ -21,8 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pathoperation package" href="pathoperation.html" />
-    <link rel="prev" title="cl_config module" href="cl_config.html" /> 
+    <link rel="prev" title="pathoperation package" href="pathoperation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,6 +46,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cl_config.html">cl_config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathoperation.html">pathoperation package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">processcsv package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-processcsv.groupby_col">processcsv.groupby_col module</a><ul>
@@ -63,13 +63,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-processcsv.unique_items">processcsv.unique_items module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#processcsv.unique_items.divid_100"><code class="docutils literal notranslate"><span class="pre">divid_100()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#processcsv.unique_items.unique_items"><code class="docutils literal notranslate"><span class="pre">unique_items()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-processcsv">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pathoperation.html">pathoperation package</a></li>
 </ul>
 
         </div>
@@ -106,18 +106,18 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="processcsv.groupby_col.group_by_col_sum">
 <span class="sig-prename descclassname"><span class="pre">processcsv.groupby_col.</span></span><span class="sig-name descname"><span class="pre">group_by_col_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_pathfilename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/groupby_col.html#group_by_col_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.groupby_col.group_by_col_sum" title="Permalink to this definition"></a></dt>
-<dd><p>Sum a column which normally is ‘amount’ with predefined conditions, the conditions are normally 
-values in one or more columns.
-:param base_dir: parent directory of the file
-:type base_dir: str
-:param in_pathfilename: the csv file to be group by, directory plus file name
-:type in_pathfilename: str
-:param out_folder: the processed csv file to be saved
-:type out_folder: str
-:param filename: the processed csv file name
-:type filename: str
-:param group_by: a list of columns as grouped by conditions
-:type group_by: List[str]</p>
+<dd><p>Sum a column which normally is ‘amount’ with predefined conditions, the        conditions are normally values in one or more columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_dir</strong> (<em>str</em>) – parent directory of the file</p></li>
+<li><p><strong>in_pathfilename</strong> (<em>str</em>) – the csv file to be grouped by, directory under basedir          plus file name</p></li>
+<li><p><strong>out_folder</strong> (<em>str</em>) – the dirto hold the processed csv file</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – a name for the processed csv file to be saved</p></li>
+<li><p><strong>group_by</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – a list of columns as grouped by conditions</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -125,26 +125,30 @@ values in one or more columns.
 <span id="processcsv-lookupcsv-module"></span><h2>processcsv.lookupcsv module<a class="headerlink" href="#module-processcsv.lookupcsv" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="processcsv.lookupcsv.dict_val">
-<span class="sig-prename descclassname"><span class="pre">processcsv.lookupcsv.</span></span><span class="sig-name descname"><span class="pre">dict_val</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/lookupcsv.html#dict_val"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.lookupcsv.dict_val" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">processcsv.lookupcsv.</span></span><span class="sig-name descname"><span class="pre">dict_val</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/lookupcsv.html#dict_val"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.lookupcsv.dict_val" title="Permalink to this definition"></a></dt>
 <dd><p>Populate a new dictionary from a csv file with predefined columns</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>f</strong> (<em>csv</em>) – source csv file</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>str</em>) – the source csv file</p></li>
+<li><p><strong>key_cols</strong> (<em>a tuple</em><em> of </em><em>str</em>) – the columns selected to form the dictionary’s key</p></li>
+<li><p><strong>val_col</strong> (<em>float</em><em> or </em><em>any</em>) – the value to be compared, mostly ‘amount’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dictionary with a tuple of columns as key and value as the val_col</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary</p>
 </dd>
 </dl>
-<p>:param key_cols:The columns selected for the new dictionary’s key
-:type key_cols: a tuple of str
-:param val_col: the column selected foe the new dictioary’s value
-:type val_col: could be anyt, mostly will be float
-:return: a dictionary with selected columns of key and value
-:rtype: dict</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="processcsv.lookupcsv.differs">
-<span class="sig-prename descclassname"><span class="pre">processcsv.lookupcsv.</span></span><span class="sig-name descname"><span class="pre">differs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_cols_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_col_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_cols_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_col_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/lookupcsv.html#differs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.lookupcsv.differs" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">processcsv.lookupcsv.</span></span><span class="sig-name descname"><span class="pre">differs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_cols_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_col_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_cols_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_col_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f4</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f5</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/lookupcsv.html#differs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.lookupcsv.differs" title="Permalink to this definition"></a></dt>
 <dd><dl class="simple">
-<dt>compare two csv files - file1 and file2, with selected columns. </dt><dd><p>write the items exist in both files to a csv file - f2,
+<dt>Compare two csv files - file1 and file2, with selected columns. </dt><dd><p>write the items exist in both files to a csv file f3
 write the items exist in f1 not in f2 to f4,
 write the items exist in f2 not in f1 to f5</p>
 </dd>
@@ -152,24 +156,18 @@ write the items exist in f2 not in f1 to f5</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>f1</strong> (<em>str</em>) – a file - f1 to be compared</p></li>
-<li><p><strong>key_cols_1</strong> (<em>a list</em><em> of </em><em>string</em>) – the column’s names which are selected to be compared</p></li>
-<li><p><strong>val_col_1</strong> (<em>could be numeric</em><em> or </em><em>any</em>) – the value to be compared, mostly ‘amount’</p></li>
+<li><p><strong>f1</strong> (<em>str</em>) – source csv file</p></li>
+<li><p><strong>key_cols_1</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – the column’s names which are selected to be compared</p></li>
+<li><p><strong>val_col_1</strong> (<em>float</em><em> or </em><em>any</em>) – the value to be compared, mostly ‘amount’</p></li>
+<li><p><strong>f2</strong> (<em>str</em>) – target csv file to be compared with f1</p></li>
+<li><p><strong>key_cols_2</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – the column’s names which are selected to be compared</p></li>
+<li><p><strong>val_col_2</strong> (<em>float</em><em> or </em><em>any</em>) – the value to be compared, mostly ‘amount’</p></li>
+<li><p><strong>f3</strong> (<em>str</em>) – csv file to hold items both in f1 and f2</p></li>
+<li><p><strong>f4</strong> (<em>str</em>) – items in f1 not in f2</p></li>
+<li><p><strong>f5</strong> (<em>str</em>) – items in f2 not in f1</p></li>
 </ul>
 </dd>
 </dl>
-<p>:param f2:The file -f2 to compare to the above file - f1
-:type f2: str
-:param key_cols_2:  the column’s names which are selected to be compared
-:type key_cols_2: a list of string
-:param val_col_2: could be numeric or anythe value to be compared, mostly ‘amount’
-:type val_col_2: could be numeric or any
-:param f3: the items exist in both files
-:type f3: str
-:param f4: the items in f1 not in f2
-:type f4: str
-:param f5: the items in f2 not in f1
-:type f5: str</p>
 </dd></dl>
 
 </section>
@@ -177,15 +175,16 @@ write the items exist in f2 not in f1 to f5</p>
 <span id="processcsv-splitcsv-module"></span><h2>processcsv.splitcsv module<a class="headerlink" href="#module-processcsv.splitcsv" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="processcsv.splitcsv.split_csv">
-<span class="sig-prename descclassname"><span class="pre">processcsv.splitcsv.</span></span><span class="sig-name descname"><span class="pre">split_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/splitcsv.html#split_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.splitcsv.split_csv" title="Permalink to this definition"></a></dt>
-<dd><p>split a csv file by the first column, and write to a new folder and new file name which is the
-one of unique value of the first column</p>
+<span class="sig-prename descclassname"><span class="pre">processcsv.splitcsv.</span></span><span class="sig-name descname"><span class="pre">split_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_infile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/splitcsv.html#split_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.splitcsv.split_csv" title="Permalink to this definition"></a></dt>
+<dd><p>split a csv file with a header into different csv files based on the value in the 
+first column.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>in_file</strong> (<em>str</em>) – the csv file to be split</p></li>
-<li><p><strong>split_folder</strong> (<em>str</em>) – directory to hold the splited file</p></li>
-<li><p><strong>out_file_name</strong> (<em>str</em>) – the file name to hold context of the csv file with same vaalue in first column</p></li>
+<li><p><strong>split_folder</strong> (<em>str</em>) – directory to hold the split files</p></li>
+<li><p><strong>out_file_name</strong> (<em>str</em>) – the file name to hold content of the csv file with 
+same values in first column</p></li>
 </ul>
 </dd>
 </dl>
@@ -195,10 +194,25 @@ one of unique value of the first column</p>
 <section id="module-processcsv.unique_items">
 <span id="processcsv-unique-items-module"></span><h2>processcsv.unique_items module<a class="headerlink" href="#module-processcsv.unique_items" title="Permalink to this heading"></a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="processcsv.unique_items.divid_100">
+<span class="sig-prename descclassname"><span class="pre">processcsv.unique_items.</span></span><span class="sig-name descname"><span class="pre">divid_100</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/unique_items.html#divid_100"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.unique_items.divid_100" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="processcsv.unique_items.unique_items">
 <span class="sig-prename descclassname"><span class="pre">processcsv.unique_items.</span></span><span class="sig-name descname"><span class="pre">unique_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_pathfilename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/processcsv/unique_items.html#unique_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#processcsv.unique_items.unique_items" title="Permalink to this definition"></a></dt>
 <dd><p>Find unique items in a column in a csv file if  column name(s) specified;
 if no column(s) specified, provide csv file with unique items for every column.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_dir</strong> (<em>str</em>) – parent directory of the csv file</p></li>
+<li><p><strong>in_pathfilename</strong> (<em>str</em>) – the path within the basedir and the csv file name</p></li>
+<li><p><strong>out_folder</strong> (<em>str</em>) – dir for output files</p></li>
+<li><p><strong>cols</strong> (<em>List</em><em>, </em><em>optional</em>) – the columns which need to find their unique items</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -211,8 +225,7 @@ if no column(s) specified, provide csv file with unique items for every column.<
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cl_config.html" class="btn btn-neutral float-left" title="cl_config module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pathoperation.html" class="btn btn-neutral float-right" title="pathoperation package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pathoperation.html" class="btn btn-neutral float-left" title="pathoperation package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

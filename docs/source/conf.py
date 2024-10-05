@@ -10,9 +10,11 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import sphinx_rtd_theme
-import os
+from os.path import abspath
 import sys
-sys.path.insert(0, os.path.abspath('../../pythonutility/'))
+sys.path.insert(0, abspath('../../src/'))
+print(sys.path)
+print(sys.path.insert(0, abspath('../../src/pythonUtility/')))
 
 
 # -- Project information -----------------------------------------------------

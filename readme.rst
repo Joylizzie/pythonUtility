@@ -1,90 +1,71 @@
     
-    .. inclusion-marker-do-not-remove
-    
-    *************
-    pythonUtility 
-    *************
+.. inclusion-marker-do-not-remove
 
-    These are utility code for a project, including database connection, csv file processing, path creation.
+*************
+pythonUtility 
+*************
 
-    .. note.. More functions will be added
+These are utility modules for a project written in Python programming language , including database connection, csv file processing, path creation.
 
-    How to build a Python library
-    #############################
+.. note.. More functions will be added
 
-    First time
-    ##########
+How to build a Python library
+#############################
 
-    Open a command line, in command line, type::
+First time
+##########
 
-        cd to path/want to save
-        python3 -m venv venv
-        source venv/bin/activate
-        pip install wheel
-        pip install setuptools
-        pip install twine
-        mkdir pythonutility
-        cd pythonutility
-        touch __init__.py
-        touch myfunction.py # copy some valid function you want to be included in the library
-        cd ..
-        mkdir tests
-        touch __init__.py
-        pip install pytest
-        pip install pytest-runner
-        touch test_myfunctions.py
+Open a command line, in command line, type::
 
-    In setup.py, input(quotation marks not included)::
+    cd to path/want to save
+    python3 -m venv venv # create an virtual environment
+    source venv/bin/activate # activate the virtual environment
+    pip install --upgrade  wheel # for source build
+    pip install --upgrade setuptools[core]
+    pip install --upgrade build
+    pip install --upgrade twine# package distribution
+    mkdir src # use src-layout `Link text <https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout>`_
+    mkdir pythonUtility
+    cd pythonUtility
+    touch __init__.py
+    # adding some valid functions to be included in the library
+    cd ..
+    mkdir tests
+    touch __init__.py
+    touch function_test.py # using unittest to test all the functions added in pythonUtility
 
-        from setuptools import find_packages, setup
-        setup(
-            name='pythonutilitylib',
-            packages=find_packages(include=['pythonUtility']),
-            version='0.1.0',
-            description='Python utility library',
-            author='Lizzie',
-            license='lizziedev team',
-            install_requires=[],
-            setup_requires=['pytest-runner'],
-            tests_require=['pytest'],
-            test_suite='tests',
-        )
-    
-    In command line, type::
+In project root folder, add file pyproject.toml for building configuration 
 
-        python setup.py pytest
-        python setup.py bdist_wheel # wheel file is stored in the 'dist' folder
+.. important::
+    .. _src-layout: https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout
+    Using src-layout, Setuptools will automatically scan the project directory looking for these layouts 
+    and try to guess the correct values for the packages and py_modules configuration.
+
+Now you can build the package. In command line, type::
+    python3 -m build
+
+In project root folder, two new folder 'build' and 'dist' generatted, 
+for source build and distribution respectively. 'pythonUtility.egg-info' in src folder 
+
+
+Development mode
+----------------
+
+``setuptools`` allows you to install a package without copying any files
+to your interpreter directory (e.g. the ``site-packages`` directory).
+This allows you to modify your source code and have the changes take
+effect without you having to rebuild and reinstall.
+Here's how to do it::
+
+    pip install --editable .
+
+How to install
+##############
+
+    If the libary is in local computer::
         pip install /path/to/wheelfile.whl
-
-    Rebuild
-    ###############
-
-    In a terminal, type::
-        cd to/path/where/the/libary/is, my case: /Users/lizziez/projects/pythonUtility
-        ls -la 
-        source venv/bin/activate
-        pip install wheel
-        pip install setuptools
-        pip install twine
-        python setup.py pytest
-        python setup.py bdist_wheel
-        pip install /Users/lizziez/projects/pythonUtility/dist/pythonUtilitylib-0.1.0-py3-none-any.whl 
-
-    How to install
-    ##############
-
+    
+    If published in Pypy repository::
         Importing in your new project
         import pythonUtility
         from pythonUtilitylib import [desired functions]
-
-
-    The functions in this lib including:
-    ####################################
-            #.redshift connection
-            #.db utility
-            #.csv file utility(read, write)
-            #.s3 upload, download
-            #.file utility
-            #.datetime
-
-

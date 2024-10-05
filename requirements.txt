@@ -101,15 +101,15 @@ six==1.16.0
 snowballstemmer==2.2.0
 sos==4.6.0
 soupsieve==2.5
-Sphinx==6.2.1
-sphinx-rtd-theme==2.0.0
-sphinxcontrib-applehelp==1.0.2
-sphinxcontrib-devhelp==1.0.2
-sphinxcontrib-htmlhelp==2.0.0
-sphinxcontrib-jquery==4.1
-sphinxcontrib-jsmath==1.0.1
-sphinxcontrib-qthelp==1.0.3
-sphinxcontrib-serializinghtml==1.1.5
+# Sphinx==6.2.1
+# sphinx-rtd-theme==2.0.0
+# sphinxcontrib-applehelp==1.0.2
+# sphinxcontrib-devhelp==1.0.2
+# sphinxcontrib-htmlhelp==2.0.0
+# sphinxcontrib-jquery==4.1
+# sphinxcontrib-jsmath==1.0.1
+# sphinxcontrib-qthelp==1.0.3
+# sphinxcontrib-serializinghtml==1.1.5
 sqlparse==0.5.0
 systemd-python==235
 Tempita==0.5.2
